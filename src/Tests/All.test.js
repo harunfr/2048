@@ -1,8 +1,8 @@
 import GameBoard from '../GameElements/GameBoard';
 
 const gameBoard = new GameBoard();
-
-test('move left', () => {
+describe('Handles Moving of Numbers.', () => {
+test('Moves left.', () => {
   gameBoard.grid = [
     [0, 0, 0, 0],
     [0, 0, 0, 2],
@@ -19,7 +19,7 @@ test('move left', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('move right', () => {
+test('Moves right.', () => {
   gameBoard.grid = [
     [0, 0, 0, 0],
     [0, 4, 0, 0],
@@ -36,7 +36,7 @@ test('move right', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('move up', () => {
+test('Move up.', () => {
   gameBoard.grid = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -53,7 +53,7 @@ test('move up', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('move down', () => {
+test('Moves down.', () => {
   gameBoard.grid = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -70,7 +70,7 @@ test('move down', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('just moves left, does not merge', () => {
+test('Just moves left, does not merge.', () => {
   gameBoard.grid = [
     [0, 0, 0, 0],
     [0, 2, 2, 2],
@@ -87,7 +87,7 @@ test('just moves left, does not merge', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('just moves right, does not merge', () => {
+test('Just moves right, does not merge.', () => {
   gameBoard.grid = [
     [2, 0, 2, 0],
     [0, 2, 2, 2],
@@ -104,7 +104,7 @@ test('just moves right, does not merge', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('just moves up, does not merge', () => {
+test('Just moves up, does not merge.', () => {
   gameBoard.grid = [
     [0, 0, 2, 0],
     [0, 2, 2, 2],
@@ -121,7 +121,7 @@ test('just moves up, does not merge', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
-test('just moves down, does not merge', () => {
+test('Just moves down, does not merge.', () => {
   gameBoard.grid = [
     [2, 2, 2, 0],
     [2, 2, 0, 2],
@@ -137,7 +137,10 @@ test('just moves down, does not merge', () => {
   gameBoard.moveDown();
   expect(gameBoard.grid).toEqual(expected);
 });
-test('merges left', () => {
+})
+
+describe('Handles Merging of Numbers.', () => {
+test('Merges left.', () => {
   gameBoard.grid = [
     [0, 2, 2, 0],
     [2, 0, 0, 2],
@@ -153,7 +156,8 @@ test('merges left', () => {
   gameBoard.mergeLeft();
   expect(gameBoard.grid).toEqual(expected);
 });
-test('merges right', () => {
+
+test('Merges right.', () => {
   gameBoard.grid = [
     [0, 0, 2, 2],
     [2, 2, 2, 0],
@@ -169,7 +173,8 @@ test('merges right', () => {
   gameBoard.mergeRight();
   expect(gameBoard.grid).toEqual(expected);
 });
-test('merges up', () => {
+
+test('Merges up.', () => {
   gameBoard.grid = [
     [0, 2, 2, 0],
     [2, 0, 2, 0],
@@ -185,7 +190,8 @@ test('merges up', () => {
   gameBoard.mergeUp();
   expect(gameBoard.grid).toEqual(expected);
 });
-test('merges down', () => {
+
+test('Merges down.', () => {
   gameBoard.grid = [
     [0, 0, 0, 0],
     [2, 2, 2, 0],
@@ -201,6 +207,8 @@ test('merges down', () => {
   gameBoard.mergeDown();
   expect(gameBoard.grid).toEqual(expected);
 });
+})
+
 xtest('complete', () => {
   gameBoard.grid = [
     [8, 2, 4, 64],
@@ -218,6 +226,8 @@ xtest('complete', () => {
   expect(gameBoard.grid).toEqual(expected);
 });
 
+// new number will be placed randomly,
+// can be check using jest matcher.
 xtest('complete with bigger numbers', () => {
   gameBoard.grid = [
     [8, 128, 512, 16],

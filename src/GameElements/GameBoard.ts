@@ -9,6 +9,7 @@ export default class GameBoard {
       [0, 0, 0, 0],
     ];
 
+    // choose 2 random number with different index.
     const firstRandomRowIndex: number = Math.floor(Math.random() * 4);
     const firstRandomNumberIndex: number = Math.floor(Math.random() * 4);
     let secondRandomRowIndex: number = Math.floor(Math.random() * 4);
@@ -17,17 +18,20 @@ export default class GameBoard {
     let numbersLeft = 2;
 
     while (numbersLeft > 0) {
+      // get random column index.
       if (firstRandomNumberIndex === secondRandomNumberIndex) {
         secondRandomNumberIndex = Math.floor(Math.random() * 4);
       } else {
         numbersLeft -= 1;
       }
+      // get random row index.
       if (firstRandomRowIndex === secondRandomRowIndex) {
         secondRandomRowIndex = Math.floor(Math.random() * 4);
       } else {
         numbersLeft -= 1;
       }
     }
+    // place '2' on chosen indexes.
     initialGrid[firstRandomRowIndex][firstRandomNumberIndex] = 2;
     initialGrid[secondRandomRowIndex][secondRandomNumberIndex] = 2;
     return initialGrid;
@@ -43,36 +47,22 @@ export default class GameBoard {
 
   get isGameEnded(): boolean {
     const includesEmptyBlock: boolean = this.grid.some((row) =>
-      row.some((block) => block === 0));
+      row.some((block) => block === 0),
+    );
+
     if (includesEmptyBlock) {
       return false;
     }
+
     const gridInitialState = this.grid.slice(0);
 
-    this.playLeft();
-    const isMutatedAfterLeft = gridInitialState.toString() !== this.grid.toString();
-    if (isMutatedAfterLeft) {
-      this.grid = gridInitialState;
-      return false;
-    }
-
-    this.playRight();
-    const isMutatedAfterRight = gridInitialState.toString() !== this.grid.toString();
-    if (isMutatedAfterRight) {
-      this.grid = gridInitialState;
-      return false;
-    }
-
-    this.playUp();
-    const isMutatedAfterUp = gridInitialState.toString() !== this.grid.toString();
-    if (isMutatedAfterUp) {
-      this.grid = gridInitialState;
-      return false;
-    }
-
-    this.playDown();
-    const isMutatedAfterDown = gridInitialState.toString() !== this.grid.toString();
-    if (isMutatedAfterDown) {
+    this.play('L');
+    this.play('R');
+    this.play('U');
+    this.play('D');
+    const isMutatedAfterAllDirections =
+      gridInitialState.toString() !== this.grid.toString();
+    if (isMutatedAfterAllDirections) {
       this.grid = gridInitialState;
       return false;
     }
@@ -80,41 +70,25 @@ export default class GameBoard {
     return true;
   }
 
-  playLeft() {
+  play(direction: string): void {
     const snapShotOfGrid = [...this.gameGrid].toString();
-    this.mergeLeft();
-    this.moveLeft();
-    const isMutated = snapShotOfGrid !== this.grid.toString();
-    if (isMutated) {
-      this.complete();
-    }
-  }
 
-  playRight() {
-    const snapShotOfGrid = [...this.gameGrid].toString();
-    this.mergeRight();
-    this.moveRight();
-    const isMutated = snapShotOfGrid !== this.grid.toString();
-    if (isMutated) {
-      this.complete();
+    if (direction === 'L') {
+      this.mergeLeft();
+      this.moveLeft();
+    } else if (direction === 'R') {
+      this.mergeRight();
+      this.moveRight();
+    } else if (direction === 'U') {
+      this.mergeUp();
+      this.moveUp();
+    } else if (direction === 'D') {
+      this.mergeDown();
+      this.moveDown();
     }
-  }
 
-  playUp() {
-    const snapShotOfGrid = [...this.gameGrid].toString();
-    this.mergeUp();
-    this.moveUp();
     const isMutated = snapShotOfGrid !== this.grid.toString();
-    if (isMutated) {
-      this.complete();
-    }
-  }
 
-  playDown() {
-    const snapShotOfGrid = [...this.gameGrid].toString();
-    this.mergeDown();
-    this.moveDown();
-    const isMutated = snapShotOfGrid !== this.grid.toString();
     if (isMutated) {
       this.complete();
     }
@@ -230,7 +204,8 @@ export default class GameBoard {
   moveUp(): void {
     const transposedGrid: number[][] = this.getTranspose(this.grid);
     const nonZeroNumbers = transposedGrid.map((row) =>
-      row.filter((number) => number !== 0));
+      row.filter((number) => number !== 0),
+    );
 
     nonZeroNumbers.forEach((row) => {
       while (row.length < 4) {
@@ -244,7 +219,8 @@ export default class GameBoard {
   moveDown(): void {
     const transposedGrid: number[][] = this.getTranspose(this.grid);
     const nonZeroNumbers = transposedGrid.map((row) =>
-      row.filter((number) => number !== 0));
+      row.filter((number) => number !== 0),
+    );
 
     nonZeroNumbers.forEach((row) => {
       while (row.length < 4) {
@@ -279,7 +255,8 @@ export default class GameBoard {
       Math.random() * indexesOfEmptyBlocks.length,
     );
 
-    const randomEmptyLocation: number[] = indexesOfEmptyBlocks[randomEmptyIndex];
+    const randomEmptyLocation: number[] =
+      indexesOfEmptyBlocks[randomEmptyIndex];
 
     const randomEmptyRow: number = randomEmptyLocation[0];
     const randomEmptyColumn: number = randomEmptyLocation[1];
