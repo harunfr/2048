@@ -45,22 +45,40 @@ const merge = keyframes`
 //
 
 interface BlockProps {
-  children: number;
+  number?: number;
   move: string;
   isMerged: boolean;
   prev: number;
 }
 
-const GridElement = styled.div<{
-  children: number | null;
-  prev: number;
-  move: string;
-  isMerged: boolean;
-}>`
+const StyledBlock = styled.div<BlockProps>`
   position: relative;
   /* padding: 5px 15px; */
   text-align: center;
-  background-color: rgb(214, 212, 56);
+  /* background-color: ; */
+  background-color: ${(props) =>
+    props.number === 4
+      ? '#ede0c8'
+      : props.number === 8
+        ? '#f2b179'
+        : props.number === 16
+          ? '#f59563'
+          : props.number === 32
+            ? '#f67c5f'
+            : props.number === 64
+              ? '#f65e3b'
+              : props.number === 128
+                ? '#edcf72'
+                : props.number === 256
+                  ? '#edcc61'
+                  : props.number === 512
+                    ? '#edc850'
+                    : props.number === 1024
+                      ? '#edc53f'
+                      : props.number === 2048
+                        ? '#3c3a32'
+                        : '#d6d438'};
+
   border-radius: 3px;
   font-size: 55px;
   font-weight: 700;
@@ -90,12 +108,12 @@ const GridElement = styled.div<{
 `;
 
 function Block({
-  move, isMerged, prev, children,
+  move, isMerged, prev, number,
 }: BlockProps) {
   return (
-    <GridElement move={move} isMerged={isMerged} prev={prev}>
-      {children || null}
-    </GridElement>
+    <StyledBlock move={move} isMerged={isMerged} prev={prev} number={number}>
+      {number || null}
+    </StyledBlock>
   );
 }
 

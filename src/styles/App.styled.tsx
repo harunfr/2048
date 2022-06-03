@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import { MdReplayCircleFilled } from 'react-icons/md';
 import PageText from '../helpers/PageText';
 import PlayGameButton from '../helpers/PlayGameButton';
-import Nav from '../helpers/Nav';
 
 const fadein = keyframes`
   from {
@@ -91,10 +90,4 @@ export const PlayIcon = styled(MdReplayCircleFilled)`
   &:hover {
     transform: scale(0.96);
   }
-`;
-
-export const Navigator = styled(Nav)`
-  font-weight: 700;
-  text-decoration: underline;
-  cursor: pointer;
 `;

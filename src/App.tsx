@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
 import GameBoard from './GameElements/GameBoard';
 import Block from './styles/Block.styled';
 import GlobalStyle from './styles/global';
@@ -12,7 +13,6 @@ import {
   Bottom,
   ReplayButton,
   PlayIcon,
-  Navigator,
 } from './styles/App.styled';
 
 import {
@@ -107,7 +107,6 @@ function App() {
       },
       0,
     );
-    // console.log(highestNumber);
 
     if (highestNumber > score) {
       setScore(highestNumber);
@@ -124,15 +123,13 @@ function App() {
     setIsGameEnded(false);
     setGridAsState(convertedToState(gameBoard.current.grid));
   };
+  // react-way of doing this is using useEffect with dependency array.
   document.onkeydown = handleKeyDown;
 
   return (
     <>
       <GlobalStyle />
-      <MainWrapper
-        id="main"
-        // onKeyDown={(event) => handleKeyDown(event)}
-      >
+      <MainWrapper id="main">
         <MainContainer>
           <Header>
             <Wrapper flexDirection="column">
@@ -144,11 +141,6 @@ function App() {
                   <Text fontWeight="Bold">2048</Text>
                   !
                 </Intro>
-                <Navigator
-                  directHandler={() => window.location.replace('/#how-to')}
-                >
-                  How to play →
-                </Navigator>
               </Wrapper>
             </Wrapper>
             <Wrapper flexDirection="column" gap="2">
@@ -176,9 +168,8 @@ function App() {
                     isMerged={isMerged}
                     prev={prev}
                     key={uuidv4()}
-                  >
-                    {number}
-                  </Block>
+                    number={number}
+                  />
                 )))}
             </GridContainer>
           </GridWrapper>
@@ -198,9 +189,6 @@ function App() {
               2048
             </Text>
             !
-            <Navigator directHandler={() => window.location.replace('/#main')}>
-              Start playing →
-            </Navigator>
           </Bottom>
         </MainContainer>
       </MainWrapper>
