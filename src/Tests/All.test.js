@@ -2,212 +2,212 @@ import GameBoard from '../GameElements/GameBoard';
 
 const gameBoard = new GameBoard();
 describe('Handles Moving of Numbers.', () => {
-test('Moves left.', () => {
-  gameBoard.grid = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 2],
-    [0, 0, 0, 0],
-    [0, 0, 0, 2],
-  ];
-  const expected = [
-    [0, 0, 0, 0],
-    [2, 0, 0, 0],
-    [0, 0, 0, 0],
-    [2, 0, 0, 0],
-  ];
-  gameBoard.moveLeft();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Moves left.', () => {
+    gameBoard.grid = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 2],
+      [0, 0, 0, 0],
+      [0, 0, 0, 2],
+    ];
+    const expected = [
+      [0, 0, 0, 0],
+      [2, 0, 0, 0],
+      [0, 0, 0, 0],
+      [2, 0, 0, 0],
+    ];
+    gameBoard.moveLeft();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Moves right.', () => {
-  gameBoard.grid = [
-    [0, 0, 0, 0],
-    [0, 4, 0, 0],
-    [0, 0, 0, 0],
-    [0, 2, 0, 0],
-  ];
-  const expected = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 4],
-    [0, 0, 0, 0],
-    [0, 0, 0, 2],
-  ];
-  gameBoard.moveRight();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Moves right.', () => {
+    gameBoard.grid = [
+      [0, 0, 0, 0],
+      [0, 4, 0, 0],
+      [0, 0, 0, 0],
+      [0, 2, 0, 0],
+    ];
+    const expected = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 4],
+      [0, 0, 0, 0],
+      [0, 0, 0, 2],
+    ];
+    gameBoard.moveRight();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Move up.', () => {
-  gameBoard.grid = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 2, 0, 2],
-  ];
-  const expected = [
-    [0, 2, 0, 2],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ];
-  gameBoard.moveUp();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Move up.', () => {
+    gameBoard.grid = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 2, 0, 2],
+    ];
+    const expected = [
+      [0, 2, 0, 2],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+    gameBoard.moveUp();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Moves down.', () => {
-  gameBoard.grid = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [2, 2, 0, 2],
-    [0, 0, 0, 0],
-  ];
-  const expected = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [2, 2, 0, 2],
-  ];
-  gameBoard.moveDown();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Moves down.', () => {
+    gameBoard.grid = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [2, 2, 0, 2],
+      [0, 0, 0, 0],
+    ];
+    const expected = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [2, 2, 0, 2],
+    ];
+    gameBoard.moveDown();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Just moves left, does not merge.', () => {
-  gameBoard.grid = [
-    [0, 0, 0, 0],
-    [0, 2, 2, 2],
-    [0, 0, 2, 0],
-    [2, 2, 0, 2],
-  ];
-  const expected = [
-    [0, 0, 0, 0],
-    [2, 2, 2, 0],
-    [2, 0, 0, 0],
-    [2, 2, 2, 0],
-  ];
-  gameBoard.moveLeft();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Just moves left, does not merge.', () => {
+    gameBoard.grid = [
+      [0, 0, 0, 0],
+      [0, 2, 2, 2],
+      [0, 0, 2, 0],
+      [2, 2, 0, 2],
+    ];
+    const expected = [
+      [0, 0, 0, 0],
+      [2, 2, 2, 0],
+      [2, 0, 0, 0],
+      [2, 2, 2, 0],
+    ];
+    gameBoard.moveLeft();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Just moves right, does not merge.', () => {
-  gameBoard.grid = [
-    [2, 0, 2, 0],
-    [0, 2, 2, 2],
-    [0, 0, 0, 0],
-    [2, 0, 2, 0],
-  ];
-  const expected = [
-    [0, 0, 2, 2],
-    [0, 2, 2, 2],
-    [0, 0, 0, 0],
-    [0, 0, 2, 2],
-  ];
-  gameBoard.moveRight();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Just moves right, does not merge.', () => {
+    gameBoard.grid = [
+      [2, 0, 2, 0],
+      [0, 2, 2, 2],
+      [0, 0, 0, 0],
+      [2, 0, 2, 0],
+    ];
+    const expected = [
+      [0, 0, 2, 2],
+      [0, 2, 2, 2],
+      [0, 0, 0, 0],
+      [0, 0, 2, 2],
+    ];
+    gameBoard.moveRight();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Just moves up, does not merge.', () => {
-  gameBoard.grid = [
-    [0, 0, 2, 0],
-    [0, 2, 2, 2],
-    [2, 2, 0, 2],
-    [2, 0, 0, 2],
-  ];
-  const expected = [
-    [2, 2, 2, 2],
-    [2, 2, 2, 2],
-    [0, 0, 0, 2],
-    [0, 0, 0, 0],
-  ];
-  gameBoard.moveUp();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Just moves up, does not merge.', () => {
+    gameBoard.grid = [
+      [0, 0, 2, 0],
+      [0, 2, 2, 2],
+      [2, 2, 0, 2],
+      [2, 0, 0, 2],
+    ];
+    const expected = [
+      [2, 2, 2, 2],
+      [2, 2, 2, 2],
+      [0, 0, 0, 2],
+      [0, 0, 0, 0],
+    ];
+    gameBoard.moveUp();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Just moves down, does not merge.', () => {
-  gameBoard.grid = [
-    [2, 2, 2, 0],
-    [2, 2, 0, 2],
-    [2, 2, 2, 0],
-    [2, 0, 0, 0],
-  ];
-  const expected = [
-    [2, 0, 0, 0],
-    [2, 2, 0, 0],
-    [2, 2, 2, 0],
-    [2, 2, 2, 2],
-  ];
-  gameBoard.moveDown();
-  expect(gameBoard.grid).toEqual(expected);
+  test('Just moves down, does not merge.', () => {
+    gameBoard.grid = [
+      [2, 2, 2, 0],
+      [2, 2, 0, 2],
+      [2, 2, 2, 0],
+      [2, 0, 0, 0],
+    ];
+    const expected = [
+      [2, 0, 0, 0],
+      [2, 2, 0, 0],
+      [2, 2, 2, 0],
+      [2, 2, 2, 2],
+    ];
+    gameBoard.moveDown();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 });
-})
 
 describe('Handles Merging of Numbers.', () => {
-test('Merges left.', () => {
-  gameBoard.grid = [
-    [0, 2, 2, 0],
-    [2, 0, 0, 2],
-    [2, 2, 2, 0],
-    [2, 2, 2, 2],
-  ];
-  const expected = [
-    [0, 4, 0, 0],
-    [4, 0, 0, 0],
-    [4, 0, 2, 0],
-    [4, 0, 4, 0],
-  ];
-  gameBoard.mergeLeft();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Merges left.', () => {
+    gameBoard.grid = [
+      [0, 2, 2, 0],
+      [2, 0, 0, 2],
+      [2, 2, 2, 0],
+      [2, 2, 2, 2],
+    ];
+    const expected = [
+      [0, 4, 0, 0],
+      [4, 0, 0, 0],
+      [4, 0, 2, 0],
+      [4, 0, 4, 0],
+    ];
+    gameBoard.mergeLeft();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Merges right.', () => {
-  gameBoard.grid = [
-    [0, 0, 2, 2],
-    [2, 2, 2, 0],
-    [2, 2, 2, 2],
-    [0, 2, 2, 0],
-  ];
-  const expected = [
-    [0, 0, 0, 4],
-    [2, 0, 4, 0],
-    [0, 4, 0, 4],
-    [0, 0, 4, 0],
-  ];
-  gameBoard.mergeRight();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Merges right.', () => {
+    gameBoard.grid = [
+      [0, 0, 2, 2],
+      [2, 2, 2, 0],
+      [2, 2, 2, 2],
+      [0, 2, 2, 0],
+    ];
+    const expected = [
+      [0, 0, 0, 4],
+      [2, 0, 4, 0],
+      [0, 4, 0, 4],
+      [0, 0, 4, 0],
+    ];
+    gameBoard.mergeRight();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Merges up.', () => {
-  gameBoard.grid = [
-    [0, 2, 2, 0],
-    [2, 0, 2, 0],
-    [0, 2, 2, 0],
-    [0, 2, 0, 0],
-  ];
-  const expected = [
-    [0, 4, 4, 0],
-    [2, 0, 0, 0],
-    [0, 0, 2, 0],
-    [0, 2, 0, 0],
-  ];
-  gameBoard.mergeUp();
-  expect(gameBoard.grid).toEqual(expected);
-});
+  test('Merges up.', () => {
+    gameBoard.grid = [
+      [0, 2, 2, 0],
+      [2, 0, 2, 0],
+      [0, 2, 2, 0],
+      [0, 2, 0, 0],
+    ];
+    const expected = [
+      [0, 4, 4, 0],
+      [2, 0, 0, 0],
+      [0, 0, 2, 0],
+      [0, 2, 0, 0],
+    ];
+    gameBoard.mergeUp();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 
-test('Merges down.', () => {
-  gameBoard.grid = [
-    [0, 0, 0, 0],
-    [2, 2, 2, 0],
-    [2, 2, 2, 2],
-    [0, 2, 0, 2],
-  ];
-  const expected = [
-    [0, 0, 0, 0],
-    [0, 2, 0, 0],
-    [4, 0, 4, 0],
-    [0, 4, 0, 4],
-  ];
-  gameBoard.mergeDown();
-  expect(gameBoard.grid).toEqual(expected);
+  test('Merges down.', () => {
+    gameBoard.grid = [
+      [0, 0, 0, 0],
+      [2, 2, 2, 0],
+      [2, 2, 2, 2],
+      [0, 2, 0, 2],
+    ];
+    const expected = [
+      [0, 0, 0, 0],
+      [0, 2, 0, 0],
+      [4, 0, 4, 0],
+      [0, 4, 0, 4],
+    ];
+    gameBoard.mergeDown();
+    expect(gameBoard.grid).toEqual(expected);
+  });
 });
-})
 
 xtest('complete', () => {
   gameBoard.grid = [

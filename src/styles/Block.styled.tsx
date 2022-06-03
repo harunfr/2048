@@ -42,8 +42,6 @@ const merge = keyframes`
   }
 `;
 
-//
-
 interface BlockProps {
   number?: number;
   move: string;
@@ -60,24 +58,24 @@ const StyledBlock = styled.div<BlockProps>`
     props.number === 4
       ? '#ede0c8'
       : props.number === 8
-      ? '#f2b179'
-      : props.number === 16
-      ? '#f59563'
-      : props.number === 32
-      ? '#f67c5f'
-      : props.number === 64
-      ? '#f65e3b'
-      : props.number === 128
-      ? '#edcf72'
-      : props.number === 256
-      ? '#edcc61'
-      : props.number === 512
-      ? '#edc850'
-      : props.number === 1024
-      ? '#edc53f'
-      : props.number === 2048
-      ? '#3c3a32'
-      : '#d6d438'};
+        ? '#f2b179'
+        : props.number === 16
+          ? '#f59563'
+          : props.number === 32
+            ? '#f67c5f'
+            : props.number === 64
+              ? '#f65e3b'
+              : props.number === 128
+                ? '#edcf72'
+                : props.number === 256
+                  ? '#edcc61'
+                  : props.number === 512
+                    ? '#edc850'
+                    : props.number === 1024
+                      ? '#edc53f'
+                      : props.number === 2048
+                        ? '#3c3a32'
+                        : '#d6d438'};
 
   border-radius: 3px;
   font-size: 55px;
@@ -93,7 +91,7 @@ const StyledBlock = styled.div<BlockProps>`
     content: '${(props) => props.prev}';
 
     animation: ${(props) =>
-        props.move ? moveTo(props.move) : props.isMerged ? merge : 'a'}
+    props.move ? moveTo(props.move) : props.isMerged ? merge : 'a'}
       620ms ease-out 1 forwards;
 
     position: absolute;
@@ -102,12 +100,12 @@ const StyledBlock = styled.div<BlockProps>`
     height: 100%;
     width: 100%;
     border-radius: 3px;
-
-    /* z-index: -1; */
   }
 `;
 
-function Block({ move, isMerged, prev, number }: BlockProps) {
+function Block({
+  move, isMerged, prev, number,
+}: BlockProps) {
   return (
     <StyledBlock move={move} isMerged={isMerged} prev={prev} number={number}>
       {number || null}

@@ -14,7 +14,6 @@ import {
   ReplayButton,
   PlayIcon,
 } from './styles/App.styled';
-
 import {
   Header,
   Wrapper,
@@ -39,8 +38,7 @@ const convertedToState = (grid: number[][]): BlockState[][] =>
       move: '',
       isMerged: false,
       prev: 0,
-    })),
-  );
+    })));
 
 function App() {
   const gameBoard = useRef(new GameBoard());
@@ -94,8 +92,7 @@ function App() {
           }
         }
         return block;
-      }),
-    );
+      }));
     const highestNumber: number = gameBoard.current.grid.reduce(
       (biggestNumber, row) => {
         const biggestNumberInRow: number = Math.max(...row);
@@ -135,7 +132,10 @@ function App() {
               <Logo>2048</Logo>
               <Wrapper flexDirection="column" gap="0.5">
                 <Intro>
-                  Merge the tiles, get to <Text fontWeight="Bold">2048</Text>!
+                  Merge the tiles, get to
+                  {' '}
+                  <Text fontWeight="Bold">2048</Text>
+                  !
                 </Intro>
               </Wrapper>
             </Wrapper>
@@ -156,7 +156,9 @@ function App() {
                 </ReplayButton>
               )}
               {gridAsState.map((row) =>
-                row.map(({ move, isMerged, prev, number }) => (
+                row.map(({
+                  move, isMerged, prev, number,
+                }) => (
                   <Block
                     move={move}
                     isMerged={isMerged}
@@ -164,18 +166,21 @@ function App() {
                     key={uuidv4()}
                     number={number}
                   />
-                )),
-              )}
+                )))}
             </GridContainer>
           </GridWrapper>
 
           <Bottom id="how-to">
-            <Text fontWeight="600">HOW TO PLAY</Text>: Use your{' '}
+            <Text fontWeight="600">HOW TO PLAY</Text>
+            : Use your
+            {' '}
             <Text fontSize="1.1" fontWeight="600">
               arrow keys
-            </Text>{' '}
+            </Text>
+            {' '}
             to move the tiles. Tiles with the same number merge into one when
-            they touch. Add them up to reach{' '}
+            they touch. Add them up to reach
+            {' '}
             <Text fontSize="1.2" fontWeight="600">
               2048
             </Text>
