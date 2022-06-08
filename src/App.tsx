@@ -1,5 +1,5 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import GameBoard from './GameElements/GameBoard';
 import Block from './styles/Block.styled';
@@ -155,15 +155,15 @@ function App() {
                   <PlayIcon />
                 </ReplayButton>
               )}
-              {gridAsState.map((row) =>
+              {gridAsState.map((row, rowIndex) =>
                 row.map(({
                   move, isMerged, prev, number,
-                }) => (
+                }, blockIndex) => (
                   <Block
                     move={move}
                     isMerged={isMerged}
                     prev={prev}
-                    key={uuidv4()}
+                    key={`${rowIndex}${blockIndex}`}
                     number={number}
                   />
                 )))}

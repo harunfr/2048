@@ -56,7 +56,7 @@ const StyledBlock = styled.div<BlockProps>`
   /* background-color: ; */
   background-color: ${(props) =>
     props.number === 4
-      ? '#ede0c8'
+      ? '#d3e02a'
       : props.number === 8
         ? '#f2b179'
         : props.number === 16
